@@ -59,7 +59,7 @@ def filelist():
 
 """write to file all class names"""
 def classes_list():
-    classes = "shapenames.txt"                 
+    classes = "shape_names.txt"                 
     with open(classes, 'w') as f:
         for (dirname, dirs, files) in os.walk('.'):
             last_dir_name = dirname.split('\\')[-1]
