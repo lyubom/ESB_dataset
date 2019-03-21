@@ -1,6 +1,3 @@
-test
-filelist
-train
 90_degree_elbows_0029
 90_degree_elbows_0028
 90_degree_elbows_0027

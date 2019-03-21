@@ -38,7 +38,7 @@ def count_points():
             if filename.endswith('.txt'):
                 infile = os.path.join(dirname, filename)
                 num_lines = sum(1 for line in open(infile))
-                if num_lines < 500:
+                if num_lines < 600:
                     print(filename, num_lines)
                     # os.remove(infile)
                     count += 1
@@ -74,18 +74,20 @@ def split_dataset():
     test = []
 
     for (dirname, dirs, files) in os.walk('.'):
-        dir_files = []
-        for filename in files:
-            if filename.endswith('.txt'):
-                infile = filename.split('.')[0]
-                dir_files.append(infile)
-        random.Random(4).shuffle(dir_files)
-        size = len(dir_files)
-        train_part = int(round(0.7 * size, 0))
-        for i in range(0, train_part):
-            train.append(dir_files[i])
-        for i in range(train_part, len(dir_files)):
-            test.append(dir_files[i])
+        print(dirname)
+        if len(dirname) != 1: # ignore root folder
+            dir_files = []
+            for filename in files:
+                if filename.endswith('.txt'):
+                    infile = filename.split('.')[0]
+                    dir_files.append(infile)
+            random.Random(4).shuffle(dir_files)
+            size = len(dir_files)
+            train_part = int(round(0.7 * size, 0))
+            for i in range(0, train_part):
+                train.append(dir_files[i])
+            for i in range(train_part, len(dir_files)):
+                test.append(dir_files[i])
         
 
     with open ("train.txt", "w") as f:
@@ -98,4 +100,5 @@ def split_dataset():
     
     print("Dataset is split")
         
+count_points()        
 split_dataset()     

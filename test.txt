@@ -1,4 +1,3 @@
-shapenames
 90_degree_elbows_0030
 90_degree_elbows_0018
 90_degree_elbows_0038
