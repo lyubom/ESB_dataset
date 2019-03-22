@@ -52,9 +52,12 @@ def filelist():
     filelist = "filelist.txt"
     with open(filelist, 'w') as f:
         for (dirname, dirs, files) in os.walk('.'):
-            for filename in files:
-                if filename.endswith('.txt') and filename != filelist:
-                    f.write(filename+'\n')
+            if len(dirname) != 1 :
+                for filename in files:
+                    if filename.endswith('.txt') and filename != filelist:
+                        dirna = dirname[2:]
+                        files = os.path.join(dirna, filename)
+                        f.write(files+'\n')
     print("Filenames written to file")
 
 """write to file all class names"""
@@ -63,8 +66,7 @@ def classes_list():
     with open(classes, 'w') as f:
         for (dirname, dirs, files) in os.walk('.'):
             last_dir_name = dirname.split('\\')[-1]
-            if not last_dir_name.startswith('.'):
-                print(last_dir_name)
+            if not last_dir_name.startswith('.') and dirname[2:6] != '.git':
                 f.write(last_dir_name+'\n')
     print("Class list written to file")
 
@@ -99,6 +101,8 @@ def split_dataset():
              f.write(str(i) + "\n")
     
     print("Dataset is split")
-        
-count_points()        
-split_dataset()     
+
+filelist() 
+classes_list()     
+# count_points()        
+# split_dataset()     
