@@ -12,9 +12,9 @@ def remove_spaces():
             continue # Already in the correct form
         if ' ' not in fn:
             continue # Invalid format
-        firstname,_,surname = fn.rpartition(' ')
+        firstname,_,surname = fn.rpartition('_')
         os.rename(os.path.join(basedir, fn),
-                os.path.join(basedir, firstname + '_' +surname ))
+                os.path.join(basedir, firstname + '' +surname ))
     print("Spaces are removed")
 
 """rename .STL to .stl"""
@@ -38,7 +38,7 @@ def count_points():
             if filename.endswith('.txt'):
                 infile = os.path.join(dirname, filename)
                 num_lines = sum(1 for line in open(infile))
-                if num_lines < 600:
+                if num_lines < 500:
                     print(filename, num_lines)
                     # os.remove(infile)
                     count += 1
@@ -102,7 +102,8 @@ def split_dataset():
     
     print("Dataset is split")
 
+# remove_spaces()
 filelist() 
 classes_list()     
 # count_points()        
-# split_dataset()     
+split_dataset()     
